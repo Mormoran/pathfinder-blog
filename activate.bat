@@ -1,0 +1,1 @@
+C:\users\mormo\virtualenvs\dnd_blog_env\Scripts\activate
