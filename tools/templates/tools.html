@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-2 col-sm-3 text-center">
+            Tools for your game
+        </div>
+        <div class="col-md-10 col-sm-9">
+            <h3>Initiative tracker</h3>
+            <div class="row">
+                <div class="col-xs-9">
+                    <input type="text" id="inputAddtoList">
+                    <button id="addCombatant">
+                    Add combatant
+                    </button>
+                    <addhere>
+                        <!-- Combatants are dynamically added here -->
+                    </addhere>                            
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -3,7 +3,7 @@ from django.utils import timezone
 from .models import Post
 from .forms import BlogPostForm
 from django.contrib.auth.decorators import login_required
-
+from django.db.models import Q
 
 def post_list(request):
     """
@@ -11,8 +11,10 @@ def post_list(request):
     list of Posts that were published prior to'now'
     and render them to the 'blogposts.html' template
     """
-    posts = Post.objects.filter(published_date__lte=timezone.now()
-                                ).order_by('-published_date')
+    if request.user.is_authenticated:
+        posts = Post.objects.filter(Q(published_date__lte=timezone.now()), Q(author__in=request.user.profile.follows.all()) | Q(author=request.user)).order_by('-published_date')
+    else:
+        posts = []
     return render(request, "blogposts.html", {'posts': posts})
 
 

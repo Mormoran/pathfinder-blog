@@ -21,6 +21,8 @@ from .settings import MEDIA_ROOT
 
 from blog import urls as blog_urls
 from blog.views import post_list
+from tips import urls as tips_urls
+from tools import urls as tools_urls
 from accounts import urls as accounts_urls
 
 
@@ -28,6 +30,8 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', post_list, name='index'),
     url(r'^blog/', include(blog_urls)),
+    url(r'^tips/', include(tips_urls)),
+    url(r'^tools/', include(tools_urls)),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
     url(r'^user/', include(accounts_urls)),
     url(r'^accounts/', include(accounts_urls)),
