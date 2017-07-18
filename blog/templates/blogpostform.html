@@ -4,7 +4,7 @@
     <h1>Add a Post</h1>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form | as_bootstrap_horizontal:'text-center' }}
+        {{ form | as_bootstrap }}
         <button type="submit" class="btn btn-info">Save</button>
         <button class="btn btn-default" onclick="location.href='/blog'">Back To Blog</button>
     </form>
