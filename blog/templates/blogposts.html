@@ -22,6 +22,12 @@
             </div>
         </div>
     {% empty %}
-    <li>No posts yet.</li>
+    <div class="row">
+        <hr>
+        <div class="col-md-2 col-sm-3 col-centered">
+            <p>No posts yet.</p>
+            <button class="btn btn-default" onclick="location.href='{% url 'new_post' %}'">Create a new post!</button>
+        </div>
+    </div>
     {% endfor %}
 {% endblock %}

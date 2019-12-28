@@ -3,16 +3,40 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-md-2 col-sm-3 text-center">
-            Tip your GM
+        <div class="col-md-6 col-sm-6 text-center col-centered">
+            <p class="text-justify">We hope you find the toolset and campaign log useful. As time goes on, we want to introduce so many more features to the site.</p>
+            <p class="text-justify">With your contribution, we hope to be able to create the best and most feature-complete companion website to your role playing game campaigns.</p>
+            <p class="text-right">Thank you!</p>
         </div>
-        <div class="col-md-10 col-sm-9">
-            <h3>YOUR <"GM NAME HERE"> </h3>
-            <div class="row">
-                <div class="col-xs-9">
-                    Tips buttons go here
-                </div>
-            </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-9 text-center">
+            <table class="table table-striped table-hover">
+                <tbody>
+                    {% for tip in tip_amounts %}
+                    <tr>
+                        <td>Gift me a {{ tip.description }}</td>
+                        <td>
+                            <form action="{% url 'tips' %}" method="post">
+                                {% csrf_token %}
+                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                    data-key="{{ stripe_key }}"
+                                    data-amount="{{ tip.stripe_amount }}"
+                                    data-description="{{ tip.description }}"
+                                    data-locale="auto"
+                                    data-label="Tip €{{ tip.display_amount }}"
+                                    data-currency="eur">
+                                </script>
+                                <input id="stripe_amount" type="text" name="stripe_amount" value="{{ tip.stripe_amount }}" hidden>
+                                <input id="display_amount" type="text" name="price" value="{{ tip.display_amount }}" hidden>
+                                <input id="description" type="text" name="description" value="{{ tip.description }}" hidden>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}

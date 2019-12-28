@@ -1,15 +1,13 @@
 {% extends "base.html" %}
-{% load bootstrap_tags %}
 {% load static %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12 col-sm-9">
-            <h3>Initiative tracker</h3>
             <div class="row">
-                <div class="col-md">
+                <div class="col-md-12 col-centered text-center">
+                    <h3>Initiative tracker</h3>
                     <form class="form-inline" id="combatantForm">
-
                         <div class="form-group">
                             <div class="input-group">
                                 <input type="text" class="form-control" id="combatantName" required placeholder="Name" style="display:inline; width:200px;">
@@ -21,40 +19,11 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-                        <!-- <div class="row">
-                            <div class="col-md-6">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="combatantName" required placeholder="Name">
-                                    <input type="number" class="form-control" id="combatantInitiative" required placeholder="Initiative">
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default" id="addCombatant">Add combatant</button>
-                                        <button type="button" class="btn btn-default" id="sortCombatants">Sort initiative</button>
-                                    </div>
-                                </div>
-                                <div class="input-group">
-                                    <button type="button" class="btn btn-default" id="nextTurn">Next turn</button>
-                                </div>
-                            </div>
-                        </div> -->
-
-
-
-
-                        <!-- <input type="number" class="form-control" id="combatantInitiative" required placeholder="Initiative">
-                        <input type="text" id="combatantName" required placeholder="Name">
-                        <input type="number" id="combatantInitiative" required placeholder="Initiative">
-                        <button type="submit" id="addCombatant">Add combatant</button>
-                        <button id="sortCombatants">Sort</button>
-                        <button id="nextTurn">Next turn</button> -->
                     </form>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 col-centered">
                     <hr>
                     <ul id="trackerContainer">
                         <!-- Combatants are dynamically added here -->
@@ -101,7 +70,6 @@
 
             $('#trackerContainer').on('click', 'img', function(e) {
                 var dead = $(this).parent().parent().find('.dead');
-                console.log(dead);
                 if (dead.length == 0) {
                     $(this).parent().parent().wrap("<strike>").find('span:first').append('<span class="label label-secondary"><i class="fas fa-skull fa-lg dead"></i></span>');
                 };

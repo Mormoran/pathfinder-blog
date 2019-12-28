@@ -151,3 +151,13 @@ a, a:hover {
 }
 
 /* Initiative tracker ends */
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.post-img {
+    width: 100%;
+    max-width: 400px;
+}
