@@ -4,19 +4,52 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-md-2 col-sm-3 text-center">
-            Tools for your game
-        </div>
-        <div class="col-md-10 col-sm-9">
+        <div class="col-md-12 col-sm-9">
             <h3>Initiative tracker</h3>
             <div class="row">
-                <div class="col-xs-9 parent_div">
-                    <form id="combatantForm">
+                <div class="col-md">
+                    <form class="form-inline" id="combatantForm">
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="combatantName" required placeholder="Name" style="display:inline; width:200px;">
+                                <input type="number" class="form-control" id="combatantInitiative" required placeholder="Initiative" style="display:inline; width:100px;">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default" id="addCombatant">Add combatant</button>
+                                    <button type="button" class="btn btn-default" id="sortCombatants">Sort initiative</button>
+                                    <button type="button" class="btn btn-default" id="nextTurn">Next turn</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <!-- <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="combatantName" required placeholder="Name">
+                                    <input type="number" class="form-control" id="combatantInitiative" required placeholder="Initiative">
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default" id="addCombatant">Add combatant</button>
+                                        <button type="button" class="btn btn-default" id="sortCombatants">Sort initiative</button>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-default" id="nextTurn">Next turn</button>
+                                </div>
+                            </div>
+                        </div> -->
+
+
+
+
+                        <!-- <input type="number" class="form-control" id="combatantInitiative" required placeholder="Initiative">
                         <input type="text" id="combatantName" required placeholder="Name">
                         <input type="number" id="combatantInitiative" required placeholder="Initiative">
                         <button type="submit" id="addCombatant">Add combatant</button>
                         <button id="sortCombatants">Sort</button>
-                        <button id="nextTurn">Next turn</button>
+                        <button id="nextTurn">Next turn</button> -->
                     </form>
                 </div>
             </div>
@@ -25,14 +58,14 @@
                     <hr>
                     <ul id="trackerContainer">
                         <!-- Combatants are dynamically added here -->
-                        <li class="list-group-item" id="4"><h3 style="margin: 5px;"><span class="label label-primary">4</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-4"></span>Cleric</h3></li>
+                        <!-- <li class="list-group-item" id="4"><h3 style="margin: 5px;"><span class="label label-primary">4</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-4"></span>Cleric</h3></li>
                         <li class="list-group-item" id="2"><h3 style="margin: 5px;"><span class="label label-primary">2</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-2"></span>Figher</h3></li>
                         <li class="list-group-item" id="12"><h3 style="margin: 5px;"><span class="label label-primary">12</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-12"></span>Orc 1</h3></li>
                         <li class="list-group-item" id="14"><h3 style="margin: 5px;"><span class="label label-primary">14</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-14"></span>Orc 3</h3></li>
                         <li class="list-group-item" id="19"><h3 style="margin: 5px;"><span class="label label-primary">19</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-19"></span>Orc 2</h3></li>
                         <li class="list-group-item" id="23"><h3 style="margin: 5px;"><span class="label label-primary">23</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-23"></span>Rogue</h3></li>
                         <li class="list-group-item" id="7"><h3 style="margin: 5px;"><span class="label label-primary">7</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-7"></span>Monk</h3></li>
-                        <li class="list-group-item" id="16"><h3 style="margin: 5px;"><span class="label label-primary">16</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-16"></span>Orc 4</h3></li>
+                        <li class="list-group-item" id="16"><h3 style="margin: 5px;"><span class="label label-primary">16</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-16"></span>Orc 4</h3></li> -->
                     </ul>
                 </div>
             </div>
@@ -49,6 +82,7 @@
                     var newCombatant = $('<li class="list-group-item" id="' + combatantInit + '"><h3 style="margin: 5px;"><span class="label label-primary">' + combatantInit + '</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton"></span>' + combatantName + '</h3></li>')
                     $('#trackerContainer').append(newCombatant);
                 };
+                $('#combatantName').focus();
             });
 
             $('#sortCombatants').on('click', function(e) {
@@ -65,8 +99,12 @@
                 $this.insertAfter($("#trackerContainer > li:last"));
             });
 
-            $('.removeButton').on('click', function() {
-                $(this).parent().parent().wrap("<strike>");
+            $('#trackerContainer').on('click', 'img', function(e) {
+                var dead = $(this).parent().parent().find('.dead');
+                console.log(dead);
+                if (dead.length == 0) {
+                    $(this).parent().parent().wrap("<strike>").find('span:first').append('<span class="label label-secondary"><i class="fas fa-skull fa-lg dead"></i></span>');
+                };
             });
         });
     </script>
