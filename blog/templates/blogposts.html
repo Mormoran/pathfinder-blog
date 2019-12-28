@@ -5,6 +5,12 @@
     {% for post in posts %}
         <div class="row">
             <hr>
+            <div class="col-md-2 col-sm-3 col-centered">
+                <button class="btn btn-default btn-lg" onclick="location.href='{% url 'new_post' %}'">Create a new post!</button>
+            </div>
+        </div>
+        <div class="row">
+            <hr>
             <div class="col-md-2 col-sm-3 text-center">
                 <a class="story-img" href="#">
                     <img src="{% gravatar_url post.author.email %}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
@@ -26,7 +32,6 @@
         <hr>
         <div class="col-md-2 col-sm-3 col-centered">
             <p>No posts yet.</p>
-            <button class="btn btn-default" onclick="location.href='{% url 'new_post' %}'">Create a new post!</button>
         </div>
     </div>
     {% endfor %}
