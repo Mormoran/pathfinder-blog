@@ -2,13 +2,13 @@
 {% load gravatar %}
 
 {% block content %}
-    {% for post in posts %}
-        <div class="row">
-            <hr>
-            <div class="col-md-2 col-sm-3 col-centered">
-                <button class="btn btn-default btn-lg" onclick="location.href='{% url 'new_post' %}'">Create a new post!</button>
-            </div>
+    <div class="row">
+        <hr>
+        <div class="col-md-2 col-sm-3 col-centered">
+            <button class="btn btn-default btn-lg" onclick="location.href='{% url 'new_post' %}'">Create a new post!</button>
         </div>
+    </div>
+    {% for post in posts %}
         <div class="row">
             <hr>
             <div class="col-md-2 col-sm-3 text-center">
