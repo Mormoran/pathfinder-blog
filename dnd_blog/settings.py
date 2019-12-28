@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
-# from .env import *
+from .env import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = ['pathfinder-blog.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['pathfinder-blog.herokuapp.com', '127.0.0.1']
 INTERNAL_IPS = ['127.0.0.1']
 
 
@@ -86,15 +86,15 @@ WSGI_APPLICATION = 'dnd_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
-DATABASES = {'default': dj_database_url.parse(DATABASE_URL) }
+# DATABASE_URL = os.environ.get('DATABASE_URL')
+# DATABASES = {'default': dj_database_url.parse(DATABASE_URL) }
 
 
 # Password validation
@@ -133,7 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-DEFAULT_FROM_EMAIL = 'richecommerce@example.com'
+DEFAULT_FROM_EMAIL = 'pathfinder_tools@example.com'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 STATIC_URL = '/static/'

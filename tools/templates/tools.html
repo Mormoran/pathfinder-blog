@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load bootstrap_tags %}
+{% load static %}
 
 {% block content %}
     <div class="row">
@@ -9,16 +10,64 @@
         <div class="col-md-10 col-sm-9">
             <h3>Initiative tracker</h3>
             <div class="row">
-                <div class="col-xs-9">
-                    <input type="text" id="inputAddtoList">
-                    <button id="addCombatant">
-                    Add combatant
-                    </button>
-                    <addhere>
+                <div class="col-xs-9 parent_div">
+                    <form id="combatantForm">
+                        <input type="text" id="combatantName" required placeholder="Name">
+                        <input type="number" id="combatantInitiative" required placeholder="Initiative">
+                        <button type="submit" id="addCombatant">Add combatant</button>
+                        <button id="sortCombatants">Sort</button>
+                        <button id="nextTurn">Next turn</button>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <hr>
+                    <ul id="trackerContainer">
                         <!-- Combatants are dynamically added here -->
-                    </addhere>                            
+                        <li class="list-group-item" id="4"><h3 style="margin: 5px;"><span class="label label-primary">4</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-4"></span>Cleric</h3></li>
+                        <li class="list-group-item" id="2"><h3 style="margin: 5px;"><span class="label label-primary">2</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-2"></span>Figher</h3></li>
+                        <li class="list-group-item" id="12"><h3 style="margin: 5px;"><span class="label label-primary">12</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-12"></span>Orc 1</h3></li>
+                        <li class="list-group-item" id="14"><h3 style="margin: 5px;"><span class="label label-primary">14</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-14"></span>Orc 3</h3></li>
+                        <li class="list-group-item" id="19"><h3 style="margin: 5px;"><span class="label label-primary">19</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-19"></span>Orc 2</h3></li>
+                        <li class="list-group-item" id="23"><h3 style="margin: 5px;"><span class="label label-primary">23</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-23"></span>Rogue</h3></li>
+                        <li class="list-group-item" id="7"><h3 style="margin: 5px;"><span class="label label-primary">7</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-7"></span>Monk</h3></li>
+                        <li class="list-group-item" id="16"><h3 style="margin: 5px;"><span class="label label-primary">16</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton" id="rem-16"></span>Orc 4</h3></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#addCombatant').on('click', function(e) {
+                e.preventDefault();
+                combatantName = $('#combatantName').val();
+                combatantInit = $('#combatantInitiative').val();
+                $('#combatantName, #combatantInitiative').val("")
+                if (combatantName != "" && combatantInit != "") {
+                    var newCombatant = $('<li class="list-group-item" id="' + combatantInit + '"><h3 style="margin: 5px;"><span class="label label-primary">' + combatantInit + '</span><span class="label"><img src="{% static "images/X-128.png" %}" class="removeButton"></span>' + combatantName + '</h3></li>')
+                    $('#trackerContainer').append(newCombatant);
+                };
+            });
+
+            $('#sortCombatants').on('click', function(e) {
+                e.preventDefault();
+                $("#trackerContainer li").sort(sort_li).appendTo('#trackerContainer');
+                function sort_li(a, b) {
+                    return (parseInt($(a).attr('id'))) < (parseInt($(b).attr('id'))) ? 1 : -1;
+                };
+            });
+
+            $('#nextTurn').on('click', function(e) {
+                e.preventDefault();
+                var $this = $("#trackerContainer > li:first");
+                $this.insertAfter($("#trackerContainer > li:last"));
+            });
+
+            $('.removeButton').on('click', function() {
+                $(this).parent().parent().wrap("<strike>");
+            });
+        });
+    </script>
 {% endblock %}
