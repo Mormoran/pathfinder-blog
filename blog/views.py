@@ -5,6 +5,8 @@ from .forms import BlogPostForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 
+from accounts.models import UserProfile
+
 def post_list(request):
     """
     Create a view that will return a

@@ -8,6 +8,9 @@ class UserLoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
+class FollowUsersForm(forms.Form):
+    users = forms.ModelMultipleChoiceField(queryset=User.objects.all())
+
 
 class UserRegistrationForm(UserCreationForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)

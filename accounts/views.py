@@ -12,7 +12,8 @@ from django.template.context_processors import csrf
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 
-from accounts.forms import SubscribeForm, UserLoginForm, UserRegistrationForm
+from accounts.forms import (FollowUsersForm, SubscribeForm, UserLoginForm,
+                            UserRegistrationForm)
 
 
 def logout(request):
@@ -23,7 +24,20 @@ def logout(request):
 
 @login_required(login_url='/accounts/login')
 def profile(request):
-    return render(request, 'profile.html')
+    if request.method == 'POST':
+        follow_form = FollowUsersForm(request.POST)
+        if follow_form.is_valid():
+            users = request.POST.getlist('users')
+            user = request.user
+            for user_id in users:
+                followed_user = User.objects.get(id=user_id)
+                user.profile.follows.add(followed_user)
+                user.save()
+                messages.success(request, "You have successfully followed " + followed_user.username + ".")
+            return redirect(reverse('profile'))
+    else:
+        follow_form = FollowUsersForm()
+    return render(request, 'profile.html', {'follow_form': follow_form})
 
 
 def login(request):
