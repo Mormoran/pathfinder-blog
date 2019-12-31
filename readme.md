@@ -1,135 +1,147 @@
-# [Tweet Dash](https://mytweetdash.herokuapp.com/):
-A Twitter dashboard analysis tool with filterable graphs that convey usage trends for any single user.
+# [Pathfinder Blog](https://pathfinder-blog.herokuapp.com/tools/):
+A website for Pathfinder DMs and players alike to keep updated on their campaign bio and have useful tools readily accessible, including a blog and a combat assistant feature.
 
-[Deployed website link.](https://mytweetdash.herokuapp.com/)
+[Deployed website link.](https://pathfinder-blog.herokuapp.com/tools/)
 
 ## UX
 #### Scope
 
 Scope 1 - Beta version.
 
-The website will allow users to analyze and gather usage trends and statistics for any Twitter user account over time.
+The website will allow users to keep a campaign blog and to use a series of tools to facilitate the running of a Pathfinder session or campaign. While it has been designed for Pathfinder players, those running campaigns on other RPG systems can also use the site.
 
-Scope 2 - Commercial dashboard.
+Registered game masters will be able to create blog posts to follow-up on sessions or progress their story, and registered players who have an account on the site and follow a given game master will have access to the blog’s content.
 
-A host of in-depth charts and scheduled retrieval of any user's timeline will ensure the latest trends and tweets are always accessible. More advanced charts will also show much more detailed usage data and statistics and allow the customer to spot potential revenue streams, weaknesses in their campaigns or opportunities to engage different audiences.
+The main tool in this version will be a combat assistant, which will allow game masters to keep track of the initiative points and turn order without the need to write down everything on pen and paper and reducing the chances of mistakes or delays.
+
+Users who benefit from the app can decide to support the developer by leaving a tip.
+
+Scope 2 - More personalisation and campaign manager
+
+The advanced version of PathBlog will feature a Source Reference Document Database section which will provide information about different elements of the games such as creature profile and descriptions, maps, spells, etc. This will allow Game Masters to quickly access information they need.
+
+It will also feature a more comprehensive campaign management system where Game Masters can keep internal notes and save the combat stats they’ve input using the combat assistant tool.
+
+It will also be possible for registered users to leave a tip to their Game Master. This will be very handy for those game masters who are also hosts and have bought food, drinks or game-related things for the players to share, or for those running games professionally or semi-professionally.
 
 ##### User stories:
 
-- As a People Operations Coordinator, I want to find and hire a team of performers, so I can give a special touch to my office’s Christmas party.
-- As a bridesmaid, I want to find an illusionist that will perform at my friend’s engagement party, so I can surprise her and her family.
-- As a cocktail bar owner, I want to have a list of reliable performers I can call and book on semi-regular basis, so I can throw themed events for my customers.
-- As a mother of a 7 year old, I want to see images and descriptions of the performers, so I can get a sense of whether their show will be suitable for a children’s party.
-
-##### Mockups and wireframes
-
-See the mockup
-
-The mockup for this project was created with Balsamiq.
-
-All of the key pages were included in the mockup.
-
-Alternatively, you can find the mockup uploaded as a PNG within the folder ASSETS/MOCKUP.
+- As a beginner Game Master, I want to find a way to run combats more quickly, so I don’t have to make my players waste time while I’m calculating every turn.
+- As an experienced Pathfinder player, I want to have access to the notes of previous campaigns, so I can prepare myself for upcoming sessions.
+- As an aspiring fantasy writer, I want to have a platform for others to read about the story I’ve created for my campaign, so I can get feedback and polish my skills.
+- As a Game Master who streams a campaign on Twitch, I want to be able to direct my audience to a site where they can follow me as a Game Master, so I can build a community of players.
 
 ## Features
 
 ##### Existing features
 
-A homepage that shows a group photo of some of the company’s main performers, as well as a description of what they do and a call to action to facilitate users going to the contact us page.
+A blog system in which registered users can create posts which have a unique URL they can share with their players.
 
-A rotating carousel of images with professional photography of the Kadabra Entertainment acts.
+A login system that prevents non-registered users from accessing the content section. This feature doesn’t prevent them from using the combant assistant tool, which is public.
 
-A section with more information and a feature image of each performer, and allows them to move up or down with the mouse or the arrows.
+A combat assistant tool which allows Game Masters to add the different players, monsters and other characters to a combat queue and automatically assigns them a turn depending on the results of their initiative roll (a number obtained by rolling a dice). The tool allows the Game Master to progress the turns, and to keep track of whose turn it is at all times, as well as making a note over characters who have become inactive.
 
-An image gallery with professional headshots and action shots, which opens in a  modal when users click on a photo, and allows them to move forwards or backwards with the mouse or the arrows.
+A “Leave a Tip” section where users of the app can support the developer. This is enabled with Stripe. (Using the test API platform for now, as it's a hobbyist project)
 
-A contact form that allows users to get in touch. To facilitate separating leads, support and general queries, users can select the most relevant between different possible subjects. The Kadabra Entertainment team will receive an email when a form is submitted (this is the desired feature, however, as part of a static, front-end initial project, the email functionality is not yet implemented on the back end).
-
-The website features a gallery with a wide variety of images showcasing acts that might be suitable for different types of events. Some of the acts include descriptors such as “spooky” or “scary”, which provides information to parents looking for acts that might scare smaller children.
+A comments section which allows readers and campaign players to leave comments using Disqus.
 
 ##### Desired features
 
-We would like to include a page with reviews where they can show positive testimonials from former customers.
+- We aim to allow users to tip their Game Masters via peer to peer transactions using Stripe Connect. The proposed business model is to allow players to send money to their Game Master through the PathBlog platform, while the site owners take a very small percentage. The idea behind this is for players to thank the Game Master who may have incurred costs while planning a game session (food, snacks, game material, source books, miniatures are all common expenses for the Game Master and/or house host).
 
-Eventually, it would be ideal to feature a calendar showing available dates, filtering by performer or type of act.
+- We plan to have a database of elements that are part of the Pathfinder lore and rulebooks. The proposed idea is to parse CSV files into the models for the database app. For the front end, we will expose a dynamic DataTables.js table that calls on rows through its built-in AJAX server-side rendering method and leverage Django's pagination system to build a robust set of cumulative filters. Due to time constraints this has not been included in this release.
+
+- The proposed campaign management system will have a repository of private notes that only the Game Master will have access to (opposite to the blog which is public). Only certain select elements will be exposed to specific players for that Game Master's campaign, which will allow the Game Master to dispense important items, notes, locations and secrets, which is a common trope in the Pen and Paper RPG systems.
+
 
 ## Technologies Used
+
+- [Bootstrap 3](https://getbootstrap.com/docs/3.3/)
+    - For front end styling and ready-made media queries.
 
 - [JQuery](https://jquery.com)
     - For DOM manipulation.
 
-- [JQuery Flip](http://lab.smashup.it/flip/)
-    - For the flip on the gallery and homepage.
-
-- [JQuery/UI](https://jqueryui.com/)
-    - For the the gallery and homepage.
-
-- [Masonry PACKAGED](https://masonry.desandro.com/)
-    - For the pictures gallery.
-
 - [Font Awesome](https://fontawesome.com/)
     - For better design and styling.
 
+- [Amazon AWS](https://aws.amazon.com/)
+    - Robust static and media file serving in the cloud.
+
+- [PostgreSQL Database](https://www.postgresql.org/)
+    - Relational database that provides easy storage for model rows.
+
 ### Testing
 
-- As a People Operations Coordinator, I want to find and hire a team of performers, so I can give a special touch to my office’s Christmas party.
+Below, each user story followed by a way in which PathBlog fulfils it:
 
-- Users can go to a landing page with information about each performer and their act, and then go to the contact us page in order to get in touch about booking their desired act or acts.
+- As a beginner Game Master, I want to find a way to run combats more quickly, so I don’t have to make my players waste time while I’m calculating every turn.
+- A beginner game master will find our combat assistant tool easy to use, and very handy as they only have to input the combating character’s names and initiative totals and it will calculate the order and keep track of the turns with just a click.
 
-- As a bridesmaid, I want to find an illusionist that will perform at my friend’s engagement party, so I can surprise her and her family.
+- As an experienced Pathfinder player, I want to have access to the notes of previous campaign sessions, so I can prepare myself for upcoming sessions.
+- As Game Masters will be able to write blog posts, their players can have access to this content anytime. This means that a Game Masters running a game for an experienced group can write down crucial information or things they could forget, and make this information available to their players.
 
-- Users can navigate the gallery to get an idea of the different acts, and they can read the descriptions on the performers page.
+- As an aspiring fantasy writer, I want to have a platform for others to read about the story I’ve created for my campaign, so I can get feedback and polish my skills.
+- While some users can use the blog for very in-game, practical posting, a creative Game Master can use the posts as a platform to build a story that others can read. Thanks to the implementation of a comments section, readers can provide feedback or show engagement with the story.
 
-- As a cocktail bar owner, I want to have a list of reliable performers I can call and book on semi-regular basis, so I can throw themed events for my customers.
+- As a Game Master who streams a campaign on Twitch, I want to be able to direct my audience to a site where they can follow me as a Game Master, so I can build a community of players.
+- Users can follow a Game Master and therefore have access to read their blog posts as well as interact with them via comments. The Game Master can link to their Twitch account or other social media and use blogging as a means to announce upcoming streams.
 
-- Users can reach out directly to the company via the form on the contact us page, or call to their phone number. The different performers are listed by name or stage name, so users can inquiry about a particular artist if preferred.
-
-- As a mother of a 7 year old, I want to see images and descriptions of the performers, so I can get a sense of whether their show will be suitable for a children’s party.
 
 #### Manual Testing
 
-1. Browse the gallery:
-    1. Click on hamburger button: Menu opens.
-    2. Click on “Gallery”: Gallery opens.
-    3. Click on an image: Modal with the desired image opens.
-    4. Click on the arrows left and right: images move left or right respectively.
-    5. Click “esc” to exit: modal closes.
+1. Registering:
+    1. Go to “Register” section: Page with registration form opens.
+    2. Click “Create account” with all form fields still empty”: A message prompting the user to fill the empty fields appears.
+    3. Password and password confirmation fields are not the same: A message saying “passwords do not match” appears.
+    4. Fill all fields correctly and click “Create Account”: A success message informs the user this was completed.
 
-    - (Feedback: In future versions, it will be ideal to offer users more intuitive ways to close the modal, but at least the given option is highlighted, readable and functioning.)
+2. Logging in:
+    1. Open login page: It prompts user to input their name and password.
+    2. Input wrong password: User can’t login. A message saying username or password were not recognised appears.
+    3. Input correct password and username: User logs in successfully.
 
-2. Visit “About Us” section:
-    1. Click on hamburger button: Menu opens.
-    2. Click on “About us”: About us page opens.
+3. Using the Combat Assistant tool:
+- Trying to add a combatant without adding its initiative value: Action fails.
+- Adding a combatant’s name and initiative number and clicking on “Add Combatant”: New combatant is added to the list.
+- Added three combatants with different initiatives and click “Sort initiative”: Combatant’s queue is rearranged from highest to lowest initiative score.
+- Add a new combatant to an existing queue: Combatant appears at the bottom.
+- Click “next turn”: The player who is next on the combat queue becomes the current turn holder, going to the top spot on the tool and having their name highlighted with a green background.
+- Click on the “X” next to a player’s name: The player’s name remains in the queue but their name is striked through and a skull symbol appears next to it to indicate they’ve been removed from combat.
 
-3. Fill up the form:
-    1. Click on hamburger button: Menu opens.
-    2. Click on “Contact us”: Contact us page opens.
-    3. Write name under “Name” field: Text is accepted and stays on field.
-    4. Write email under “email” field: Text stays put. Suggested email appears when using Google Chrome.
-    5. Choose a subject: Drop down menu opens allowing user to choose a subject for their email.
-    6. Write message: The message field allows users to input paragraphs of over 500 words. This is desired, as some inquiries might be very detailed.
-    7. Tried to submit the form without a name: User is not allowed to submit, a message pointing out to the required field appears. This happens for every required field when empty.
-    8. Click submit when all fields are filled correctly: The front end side of the form works as expected. It is possible to see in the URL that the form is capable of passing the message to the backend (please note that this part of the project involved setting up the frontend and it took place before the backend lessons, therefore it was considered satisfactory if it would make it this far).
+5. Leaving a tip:
+- Click “Gift me a candy bar” to tip €1.50: A modal appears to take card details and indicates the correct amount to be paid.
+- Click “Pay €1.50” while leaving the fields empty: The empty field’s borders turn red and the action fails.
+- Input the wrong card details and try to pay: The card number field goes red and the action fails.
+- Input the correct card details using a test card and trying to pay: Transaction is successful and a message appear letting the user know their tip was processed.
+    - Test card details are: Card Num. = 4242 4242 4242 4242, CVV = 111, Expiry = Any date in the future, e.g.: 12/20
 
-4. Different screen sizes:
-    - The site is best seen on desktop sizes, however, media queries are in place to make it functional on smaller and bigger devices.
+6. Creating a blog post:
+    1. Click on “Create a new post”: Blog post creator opens.
+        - Attempt to publish an empty blog post: A message appears prompting the user to fill the first required empty field, in this case, the title.
+        - Attempt to publish a post that has a title but no content: A message appears prompting the user to fill in the content section.
+    2. Filling both required fields and clicking to publish the post: Blog post is published successfully and user is taken to their new blog post’s unique URL.
+
+7. Different screen sizes:
+    - The site is mobile friendly, and it uses Bootstrap grids to provide a flexible and appealing structure that looks well both on desktop sizes and smartphones.
     - The style and colour palette remains consistent throughout different screen sizes and the text becomes smaller, but at no point it becomes so small that it impairs readability.
-    - The hamburger menu was decided for cleanliness and design more than mobile functionality. The curtain effect was requested by the owner of the website as a hint of his company style.
 
 ### Bugs and Issues
 
-- While most of the content is responsive, some unusual and especially smaller screen sizes might crop a portion of the feature images.
-- On the entertainers landing page, smaller screen sizes cause the secondary (smaller) image of the artist to move, and it ends up partially covering some of the text describing what the act is about.
-- As a starter website (Stream 1 final project) finished in early 2017, my general knowledge of modern libraries and practicality of maintenance was still in develpment. When creating the website, I wanted to try something other than just a static page, and I chose "flashier" effects. As such, some of the addon help libraries are nearly a decade old at this point, and attempting to update them to modern standards would require a complete rewrite of the entire project. I have decided to keep the website nearly "as is" while only updating some glaring issues. Possibly in the future I may rewrite this under a whole different project repository. This being my very first completed website holds some significance in showcasing how much I could accomplish in 1 month of learning HTML and JS techniques.
+- While most of the content is responsive, some unusual and especially smaller screen sizes might crop a portion of the blog post's images.
+- The SRD Database and Campaign Management sections are not in this release.
+- The Stripe payments are meant to be a system where players can use the site as a platform to send money to 3rd parties through the use of Stripe Connect. The setup for Stripe Connect requires a registered company TAX number, and is unavailable in this release.
 
 ## Deployment
 
-I deployed this project on GitHub Pages.
-There is no difference between the development and the deployed version of the site.
+- Download or pull the repository.
+- Install all required packages with `pip install -r requirements.txt`.
+- Create a new Heroku project.
+- [Follow the great guide from Vitor Freitas on how to deploy Django projects on Heroku](https://simpleisbetterthancomplex.com/tutorial/2016/08/09/how-to-deploy-django-applications-on-heroku.html)
 
 ### Credits and acknowledgements
 
-All images were courtesy of Kadabra Entertainers.
+[Richard Dalton](https://github.com/richardadalton) provided the base for the subscription code.
 
 ### Acknowledgements
 
