@@ -1,19 +1,20 @@
-from django.contrib import messages, auth
-from django.core.urlresolvers import reverse
-from django.shortcuts import render, redirect, HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
-from accounts.forms import UserRegistrationForm, UserLoginForm, SubscribeForm
-from django.template.context_processors import csrf
+import json
+
 import stripe
 from django.conf import settings
+from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse
+from django.shortcuts import HttpResponseRedirect, redirect, render
+from django.template.context_processors import csrf
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-import json
-from django.contrib.auth.models import User
-from django.http import HttpResponse
+
+from accounts.forms import SubscribeForm, UserLoginForm, UserRegistrationForm
 
 
-# Create your views here.
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You have successfully logged out')
